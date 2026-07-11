@@ -2,6 +2,7 @@ import cors from "@fastify/cors";
 import rateLimit from "@fastify/rate-limit";
 import Fastify from "fastify";
 import authRoutes from "./modules/auth/routes.js";
+import crimesRoutes from "./modules/crimes/routes.js";
 import playerRoutes from "./modules/player/routes.js";
 import authPlugin from "./plugins/auth.js";
 import prismaPlugin from "./plugins/prisma.js";
@@ -23,6 +24,7 @@ app.get("/api/health", async () => ({ ok: true }));
 
 await app.register(authRoutes, { prefix: "/api/auth" });
 await app.register(playerRoutes, { prefix: "/api/player" });
+await app.register(crimesRoutes, { prefix: "/api/crimes" });
 
 const port = Number(process.env.PORT ?? 3000);
 try {

@@ -1,0 +1,89 @@
+{
+  "crimes": [
+    {
+      "id": "pickpocket",
+      "name": "Yankesicilik",
+      "tier": "street",
+      "stats": { "agility": 0.7, "intelligence": 0.3 },
+      "statThreshold": 20,
+      "difficultyPenalty": 0,
+      "reward": { "min": 50, "max": 150, "currency": "dirty" },
+      "cooldownSeconds": 60,
+      "actionPointCost": 5,
+      "failure": { "jailSeconds": 0, "reputationLoss": 0 },
+      "requirements": { "minLevel": 1, "crew": null, "territory": null },
+      "location": "street_corner"
+    },
+    {
+      "id": "car_theft",
+      "name": "Araba Çalma",
+      "tier": "street",
+      "stats": { "agility": 0.5, "intelligence": 0.5 },
+      "statThreshold": 25,
+      "difficultyPenalty": 0,
+      "reward": { "min": 100, "max": 300, "currency": "dirty" },
+      "cooldownSeconds": 120,
+      "actionPointCost": 8,
+      "failure": { "jailSeconds": 60, "reputationLoss": 0 },
+      "requirements": { "minLevel": 1, "crew": null, "territory": null },
+      "location": "street_corner"
+    },
+    {
+      "id": "store_robbery",
+      "name": "Mağaza Soygunu",
+      "tier": "mid",
+      "stats": { "agility": 0.6, "intelligence": 0.4 },
+      "statThreshold": 60,
+      "difficultyPenalty": 10,
+      "reward": { "min": 400, "max": 1200, "currency": "dirty" },
+      "cooldownSeconds": 300,
+      "actionPointCost": 15,
+      "failure": { "jailSeconds": 180, "reputationLoss": 0 },
+      "requirements": { "minLevel": 5, "crew": null, "territory": null },
+      "location": "shopping_district"
+    },
+    {
+      "id": "smuggling",
+      "name": "Kaçakçılık",
+      "tier": "mid",
+      "stats": { "charisma": 0.5, "strength": 0.5 },
+      "statThreshold": 70,
+      "difficultyPenalty": 10,
+      "reward": { "min": 600, "max": 1800, "currency": "dirty" },
+      "cooldownSeconds": 600,
+      "actionPointCost": 20,
+      "failure": { "jailSeconds": 300, "reputationLoss": 2 },
+      "requirements": { "minLevel": 8, "crew": null, "territory": null },
+      "location": "port"
+    },
+    {
+      "id": "safe_cracking",
+      "name": "Kasa Kırma",
+      "tier": "heavy",
+      "stats": { "intelligence": 0.7, "agility": 0.3 },
+      "statThreshold": 120,
+      "difficultyPenalty": 20,
+      "reward": { "min": 3000, "max": 8000, "currency": "dirty" },
+      "cooldownSeconds": 1800,
+      "actionPointCost": 30,
+      "failure": { "jailSeconds": 900, "reputationLoss": 5 },
+      "requirements": { "minLevel": 15, "crew": null, "territory": null },
+      "location": "bank_district",
+      "minigame": "reaction_timing"
+    },
+    {
+      "id": "port_operation",
+      "name": "Liman Operasyonu",
+      "tier": "organized",
+      "stats": { "strength": 0.5, "charisma": 0.3 },
+      "statThreshold": 250,
+      "difficultyPenalty": 30,
+      "reward": { "min": 15000, "max": 40000, "currency": "dirty" },
+      "cooldownSeconds": 7200,
+      "actionPointCost": 50,
+      "failure": { "jailSeconds": 3600, "reputationLoss": 20 },
+      "requirements": { "minLevel": 30, "crew": { "min": 3, "max": 5 }, "territory": "port" },
+      "location": "port"
+    }
+  ]
+}
