@@ -1,5 +1,4 @@
-// Mafya RPG — S1 başlangıç şeması (CLAUDE.md Bölüm 5)
-// Sonraki sprintlerde genişler: Clan, Territory, Business, War...
+// Mafya RPG — S3: Business, InventoryItem, EquipmentPrice eklendi
 
 generator client {
   provider = "prisma-client-js"
@@ -19,7 +18,6 @@ model Player {
   level Int @default(1)
   xp    Int @default(0)
 
-  // Statlar (GDD 2.2: her suç farklı kombinasyon ister)
   strength     Int @default(5)
   agility      Int @default(5)
   intelligence Int @default(5)
@@ -27,23 +25,27 @@ model Player {
 
   cityId String @default("new_haven")
 
-  cleanMoney Int @default(500) // başlangıç harçlığı
+  cleanMoney Int @default(500)
   dirtyMoney Int @default(0)
 
-  // Durum zamanlayıcıları (Redis'te timestamp; DB'de kalıcı yedek)
-  jailUntil      DateTime?
-  hospitalUntil  DateTime?
-  travelUntil    DateTime?
+  jailUntil       DateTime?
+  hospitalUntil   DateTime?
+  travelUntil     DateTime?
   protectionUntil DateTime?
 
   jailbreakSkill Int @default(0)
 
+  // Yeni oyuncu bonusu: ilk 3 gün +%50 AP regen (GDD §12)
+  newbieBonusUntil DateTime?
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  refreshTokens RefreshToken[]
-  transactionsFrom Transaction[] @relation("txFrom")
-  transactionsTo   Transaction[] @relation("txTo")
+  refreshTokens    RefreshToken[]
+  transactionsFrom Transaction[]  @relation("txFrom")
+  transactionsTo   Transaction[]  @relation("txTo")
+  businesses       Business[]
+  inventory        InventoryItem[]
 }
 
 model RefreshToken {
@@ -62,21 +64,63 @@ enum Currency {
   DIRTY
 }
 
-// Mimari kural #3: bakiye asla doğrudan set edilmez,
-// her para hareketi bu tabloya kayıtla birlikte $transaction içinde yapılır.
 model Transaction {
-  id       String   @id @default(cuid())
-  fromId   String?
-  from     Player?  @relation("txFrom", fields: [fromId], references: [id])
-  toId     String?
-  to       Player?  @relation("txTo", fields: [toId], references: [id])
-  amount   Int
-  currency Currency
-  type     String // ör: REGISTER_BONUS, CRIME_REWARD, LAUNDER_IN...
-  meta     Json?
+  id        String   @id @default(cuid())
+  fromId    String?
+  from      Player?  @relation("txFrom", fields: [fromId], references: [id])
+  toId      String?
+  to        Player?  @relation("txTo", fields: [toId], references: [id])
+  amount    Int
+  currency  Currency
+  type      String
+  meta      Json?
   createdAt DateTime @default(now())
 
   @@index([fromId])
   @@index([toId])
   @@index([type, createdAt])
+}
+
+// GDD §3 — işletme + aklama kuyruğu
+model Business {
+  id       String @id @default(cuid())
+  ownerId  String
+  owner    Player @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  typeId   String // businesses.json id'si
+  level    Int    @default(1)
+  cityId   String
+
+  launderQueue  Int     @default(0) // kuyruktaki kirli para (₺)
+  rushMode      Boolean @default(false)
+  // Pasif gelir: son tahsilat zamanı (Redis değil DB; saatlik cron işler)
+  lastPassiveAt DateTime @default(now())
+
+  createdAt DateTime @default(now())
+
+  @@index([ownerId])
+  @@index([typeId])
+}
+
+// GDD §4 — ekipman envanteri
+model InventoryItem {
+  id         String  @id @default(cuid())
+  playerId   String
+  player     Player  @relation(fields: [playerId], references: [id], onDelete: Cascade)
+  itemId     String  // equipment.json id'si
+  durability Int
+  equipped   Boolean @default(false)
+
+  createdAt DateTime @default(now())
+
+  @@index([playerId])
+}
+
+// GDD §4.3 — saatlik cron'un güncellediği dinamik fiyat
+model EquipmentPrice {
+  itemId    String @id
+  cityId    String
+  demand24h Int    @default(0)
+  updatedAt DateTime @default(now())
+
+  @@unique([itemId, cityId])
 }

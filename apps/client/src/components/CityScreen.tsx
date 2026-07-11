@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 import { usePlayerStore } from "../stores/player";
 import { ApBar } from "./ApBar";
 import { CrimeScreen } from "./CrimeScreen";
+import { MarketScreen } from "./MarketScreen";
 
 type Tab = "Şehir" | "Suç" | "Pazar" | "Klan" | "Profil";
 const TABS: Tab[] = ["Şehir", "Suç", "Pazar", "Klan", "Profil"];
-const ACTIVE_TABS = new Set<Tab>(["Şehir", "Suç"]);
+const ACTIVE_TABS = new Set<Tab>(["Şehir", "Suç", "Pazar"]);
 
 export function CityScreen() {
   const { profile, fetchMe, logout } = usePlayerStore();
@@ -52,6 +53,7 @@ export function CityScreen() {
           </div>
         )}
         {activeTab === "Suç" && <CrimeScreen />}
+        {activeTab === "Pazar" && <MarketScreen />}
       </main>
 
       {/* Alt tab bar (mobil öncelikli) */}

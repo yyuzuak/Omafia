@@ -1,0 +1,115 @@
+{
+  "equipment": [
+    {
+      "id": "pocket_knife",
+      "name": "Çakı",
+      "category": "weapon",
+      "basePrice": 500,
+      "durability": 200,
+      "effects": { "pvpAttackBonus": 0.10 },
+      "rarity": "common"
+    },
+    {
+      "id": "pistol",
+      "name": "Tabanca",
+      "category": "weapon",
+      "basePrice": 3500,
+      "durability": 100,
+      "effects": { "pvpAttackBonus": 0.30 },
+      "rarity": "common"
+    },
+    {
+      "id": "shotgun",
+      "name": "Pompalı",
+      "category": "weapon",
+      "basePrice": 8000,
+      "durability": 80,
+      "effects": { "pvpAttackBonus": 0.55 },
+      "rarity": "uncommon"
+    },
+    {
+      "id": "smg",
+      "name": "Hafif Makineli",
+      "category": "weapon",
+      "basePrice": 18000,
+      "durability": 60,
+      "effects": { "pvpAttackBonus": 0.90 },
+      "rarity": "rare"
+    },
+    {
+      "id": "leather_vest",
+      "name": "Deri Yelek",
+      "category": "armor",
+      "basePrice": 1200,
+      "durability": 150,
+      "effects": { "pvpDefenseBonus": 0.10 },
+      "rarity": "common"
+    },
+    {
+      "id": "bulletproof_vest",
+      "name": "Kurşun Geçirmez Yelek",
+      "category": "armor",
+      "basePrice": 6000,
+      "durability": 100,
+      "effects": { "pvpDefenseBonus": 0.35 },
+      "rarity": "uncommon"
+    },
+    {
+      "id": "heavy_armor",
+      "name": "Ağır Zırh",
+      "category": "armor",
+      "basePrice": 20000,
+      "durability": 80,
+      "effects": { "pvpDefenseBonus": 0.75 },
+      "rarity": "rare"
+    },
+    {
+      "id": "motorcycle",
+      "name": "Motosiklet",
+      "category": "vehicle",
+      "basePrice": 12000,
+      "durability": 300,
+      "effects": { "escapeBonus": 0.10, "crimeBonus": 0.05 },
+      "rarity": "common"
+    },
+    {
+      "id": "van",
+      "name": "Kamyonet",
+      "category": "vehicle",
+      "basePrice": 25000,
+      "durability": 400,
+      "effects": { "cargoCapacity": 50, "crimeBonus": 0.08 },
+      "rarity": "uncommon"
+    },
+    {
+      "id": "lockpick",
+      "name": "Maymuncuk",
+      "category": "tool",
+      "basePrice": 800,
+      "durability": 150,
+      "effects": { "crimeBonus": { "safe_cracking": 0.08 } },
+      "rarity": "common"
+    },
+    {
+      "id": "radio",
+      "name": "Telsiz",
+      "category": "tool",
+      "basePrice": 1500,
+      "durability": 200,
+      "effects": { "crewBonus": 0.05 },
+      "rarity": "common"
+    },
+    {
+      "id": "golden_lockpick",
+      "name": "Altın Maymuncuk",
+      "category": "tool",
+      "basePrice": 0,
+      "durability": 500,
+      "effects": { "crimeBonus": { "safe_cracking": 0.15 } },
+      "rarity": "legendary",
+      "source": "port_operation_drop",
+      "dropChance": 0.02,
+      "tradeable": true
+    }
+  ]
+}

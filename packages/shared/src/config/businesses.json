@@ -1,0 +1,79 @@
+{
+  "businesses": [
+    {
+      "id": "laundromat",
+      "name": "Çamaşırhane",
+      "purchasePrice": 25000,
+      "launderingCapacityPerHour": 1500,
+      "launderingRate": 0.70,
+      "passiveIncomePerHour": 100,
+      "queueLimitMultiplier": 24,
+      "rushLaundering": { "speedMult": 2, "raidChancePerDay": 0.10 },
+      "maxOwnedPerPlayer": 3,
+      "upgrades": [
+        { "level": 2, "cost": 12500, "capacityMult": 1.5, "rateBonus": 0.03 },
+        { "level": 3, "cost": 25000, "capacityMult": 2.0, "rateBonus": 0.05 }
+      ]
+    },
+    {
+      "id": "bar",
+      "name": "Bar",
+      "purchasePrice": 75000,
+      "launderingCapacityPerHour": 4000,
+      "launderingRate": 0.75,
+      "passiveIncomePerHour": 350,
+      "queueLimitMultiplier": 24,
+      "rushLaundering": { "speedMult": 2, "raidChancePerDay": 0.10 },
+      "maxOwnedPerPlayer": 3,
+      "upgrades": [
+        { "level": 2, "cost": 37500, "capacityMult": 1.5, "rateBonus": 0.03 },
+        { "level": 3, "cost": 75000, "capacityMult": 2.0, "rateBonus": 0.05 }
+      ]
+    },
+    {
+      "id": "restaurant",
+      "name": "Restoran",
+      "purchasePrice": 200000,
+      "launderingCapacityPerHour": 9000,
+      "launderingRate": 0.80,
+      "passiveIncomePerHour": 900,
+      "queueLimitMultiplier": 24,
+      "rushLaundering": { "speedMult": 2, "raidChancePerDay": 0.10 },
+      "maxOwnedPerPlayer": 3,
+      "upgrades": [
+        { "level": 2, "cost": 100000, "capacityMult": 1.5, "rateBonus": 0.03 },
+        { "level": 3, "cost": 200000, "capacityMult": 2.0, "rateBonus": 0.05 }
+      ]
+    },
+    {
+      "id": "casino",
+      "name": "Kumarhane",
+      "purchasePrice": 600000,
+      "launderingCapacityPerHour": 25000,
+      "launderingRate": 0.85,
+      "passiveIncomePerHour": 3000,
+      "queueLimitMultiplier": 24,
+      "rushLaundering": { "speedMult": 2, "raidChancePerDay": 0.10 },
+      "maxOwnedPerPlayer": 3,
+      "upgrades": [
+        { "level": 2, "cost": 300000, "capacityMult": 1.5, "rateBonus": 0.03 },
+        { "level": 3, "cost": 600000, "capacityMult": 2.0, "rateBonus": 0.05 }
+      ]
+    },
+    {
+      "id": "nightclub",
+      "name": "Gece Kulübü",
+      "purchasePrice": 1500000,
+      "launderingCapacityPerHour": 60000,
+      "launderingRate": 0.90,
+      "passiveIncomePerHour": 8000,
+      "queueLimitMultiplier": 24,
+      "rushLaundering": { "speedMult": 2, "raidChancePerDay": 0.10 },
+      "maxOwnedPerPlayer": 3,
+      "upgrades": [
+        { "level": 2, "cost": 750000, "capacityMult": 1.5, "rateBonus": 0.03 },
+        { "level": 3, "cost": 1500000, "capacityMult": 2.0, "rateBonus": 0.05 }
+      ]
+    }
+  ]
+}
