@@ -1,0 +1,82 @@
+// Mafya RPG — S1 başlangıç şeması (CLAUDE.md Bölüm 5)
+// Sonraki sprintlerde genişler: Clan, Territory, Business, War...
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Player {
+  id           String   @id @default(cuid())
+  username     String   @unique
+  email        String   @unique
+  passwordHash String
+
+  level Int @default(1)
+  xp    Int @default(0)
+
+  // Statlar (GDD 2.2: her suç farklı kombinasyon ister)
+  strength     Int @default(5)
+  agility      Int @default(5)
+  intelligence Int @default(5)
+  charisma     Int @default(5)
+
+  cityId String @default("new_haven")
+
+  cleanMoney Int @default(500) // başlangıç harçlığı
+  dirtyMoney Int @default(0)
+
+  // Durum zamanlayıcıları (Redis'te timestamp; DB'de kalıcı yedek)
+  jailUntil      DateTime?
+  hospitalUntil  DateTime?
+  travelUntil    DateTime?
+  protectionUntil DateTime?
+
+  jailbreakSkill Int @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  refreshTokens RefreshToken[]
+  transactionsFrom Transaction[] @relation("txFrom")
+  transactionsTo   Transaction[] @relation("txTo")
+}
+
+model RefreshToken {
+  id        String   @id @default(cuid())
+  tokenHash String   @unique
+  playerId  String
+  player    Player   @relation(fields: [playerId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([playerId])
+}
+
+enum Currency {
+  CLEAN
+  DIRTY
+}
+
+// Mimari kural #3: bakiye asla doğrudan set edilmez,
+// her para hareketi bu tabloya kayıtla birlikte $transaction içinde yapılır.
+model Transaction {
+  id       String   @id @default(cuid())
+  fromId   String?
+  from     Player?  @relation("txFrom", fields: [fromId], references: [id])
+  toId     String?
+  to       Player?  @relation("txTo", fields: [toId], references: [id])
+  amount   Int
+  currency Currency
+  type     String // ör: REGISTER_BONUS, CRIME_REWARD, LAUNDER_IN...
+  meta     Json?
+  createdAt DateTime @default(now())
+
+  @@index([fromId])
+  @@index([toId])
+  @@index([type, createdAt])
+}

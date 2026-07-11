@@ -1,0 +1,34 @@
+{
+  "cities": [
+    {
+      "id": "new_haven",
+      "name": "New Haven",
+      "description": "Finans ve liman şehri — en büyük pazar. Her şeyin talebi yüksek.",
+      "isStarter": true
+    },
+    {
+      "id": "porto_vecchio",
+      "name": "Porto Vecchio",
+      "description": "İthalat kapısı. Viski, puro ve şarap ucuz; silah pahalı.",
+      "isStarter": false
+    },
+    {
+      "id": "las_sombras",
+      "name": "Las Sombras",
+      "description": "Kumar başkenti. Alkol ve lüks mallar pahalı.",
+      "isStarter": false
+    },
+    {
+      "id": "ironville",
+      "name": "Ironville",
+      "description": "Sanayi şehri. Silah ve araç parçası ucuz; puro ve lüks içki pahalı.",
+      "isStarter": false
+    },
+    {
+      "id": "bayou_city",
+      "name": "Bayou City",
+      "description": "Güney kapısı — Küba rotası. Rom ve puro ucuz; silah ve ilaç pahalı.",
+      "isStarter": false
+    }
+  ]
+}
